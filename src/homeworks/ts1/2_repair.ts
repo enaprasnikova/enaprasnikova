@@ -36,15 +36,15 @@ export type Percent = {
 
 // Здесь, возможно, нужно использовать as, возможно в switch передавать немного по-другому
 const getDataAmount = (data: Data): number => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const unhandled = (): never => {
+    throw new Error(`unknown type: ${data.type}`);
+  }; // здесь, возможно, нужно использовать нечто другое. :never должен остаться
   switch (data.type) {
     case 'Money':
       return (data.value as Money).amount;
 
     default: {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const unhandled = (): never => {
-        throw new Error(`unknown type: ${data.type}`);
-      }; // здесь, возможно, нужно использовать нечто другое. :never должен остаться
       unhandled();
     }
   }
