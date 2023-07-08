@@ -106,5 +106,8 @@ export const createRandomProduct = (createdAt: string): Product => {
  * */
 export const createRandomOperation = (createdAt: string): Operation => {
   const category: Category = { id: '2', name: 'bakery' };
-  return { id: '1', name: 'l', createdAt: createdAt, amount: 1, category: category, type: 'Profit' };
+  type types = 'Cost' | 'Profit';
+  const typeOperation: types[] = ['Profit', 'Cost'];
+  const randomType: types = typeOperation[Math.floor(Math.random() * typeOperation.length)];
+  return { id: '1', name: 'l', createdAt: createdAt, amount: 1, category: category, type: randomType } as Operation;
 };
