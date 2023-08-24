@@ -43,14 +43,71 @@
  * - type ('Profit')
  * */
 
+type Category = {
+  id: string;
+  name: string;
+  photo?: string;
+};
+
+type Product = {
+  id: string;
+  name: string;
+  photo: string;
+  desc?: string;
+  createdAt: string;
+  oldPrice?: number;
+  price: number;
+  category: Category;
+};
+
+type Operation = Cost | Profit;
+
+type Cost = {
+  id: string;
+  name: string;
+  desc?: string;
+  createdAt: string;
+  amount: number;
+  category: Category;
+  type: 'Cost';
+};
+
+type Profit = {
+  id: string;
+  name: string;
+  desc?: string;
+  createdAt: string;
+  amount: number;
+  category: Category;
+  type: 'Profit';
+};
+
 /**
  * Создает случайный продукт (Product).
  * Принимает дату создания (строка)
  * */
-// export const createRandomProduct = (createdAt: string) => {};
+export const createRandomProduct = (createdAt: string): Product => {
+  const category: Category = { id: '2', name: 'bakery' };
+  return {
+    id: '1',
+    name: 'bread',
+    createdAt: createdAt,
+    price: 12,
+    desc: 'lala',
+    category: category,
+    oldPrice: 10,
+    photo: 'ccc',
+  };
+};
 
 /**
  * Создает случайную операцию (Operation).
  * Принимает дату создания (строка)
  * */
-// export const createRandomOperation = (createdAt: string) => {};
+export const createRandomOperation = (createdAt: string): Operation => {
+  const category: Category = { id: '2', name: 'bakery' };
+  type types = 'Cost' | 'Profit';
+  const typeOperation: types[] = ['Profit', 'Cost'];
+  const randomType: types = typeOperation[Math.floor(Math.random() * typeOperation.length)];
+  return { id: '1', name: 'l', createdAt: createdAt, amount: 1, category: category, type: randomType } as Operation;
+};
